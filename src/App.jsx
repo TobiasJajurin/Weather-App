@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { ThemeProvider } from './contexts/ThemeContext';
+import { UnitProvider } from './contexts/UnitContext';
+import { WeatherProvider } from './contexts/WeatherContext';
+import { LandingProvider } from './contexts/LandingContext';
+import Header from './components/Header/Header';
+import SearchBar from './components/SearchBar/SearchBar';
+import WeatherCard from './components/WeatherCard/WeatherCard';
+import ForecastList from './components/ForecastList/ForecastList';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import LandingPage from './components/LandingPage/LandingPage';
+import { useWeather } from './contexts/WeatherContext';
+import { useLanding } from './contexts/LandingContext';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const WeatherApp = () => {
+  const { currentWeather, forecast, loading, error } = useWeather();
+  const { showApp } = useLanding();
+
+  if (!showApp) {
+    return <LandingPage />;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      <Header />
+      <main className="main-content">
+        <SearchBar />
+        
+        {error && <ErrorMessage message={error} />}
+        
+        {loading && <LoadingSpinner />}
+        
+        {!loading && !error && currentWeather && (
+          <>
+            <WeatherCard weather={currentWeather} />
+            {forecast && <ForecastList forecast={forecast} />}
+          </>
+        )}
+        
+        {!loading && !error && !currentWeather && (
+          <div className="welcome-message">
+            <h2>App del Clima</h2>
+            <p>Obtén información del clima en tiempo real para cualquier ciudad del mundo. Busca tu ubicación o usa tu posición actual para comenzar a explorar el clima.</p>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+};
 
-export default App
+const App = () => {
+  return (
+    <ThemeProvider>
+      <UnitProvider>
+        <WeatherProvider>
+          <LandingProvider>
+            <WeatherApp />
+          </LandingProvider>
+        </WeatherProvider>
+      </UnitProvider>
+    </ThemeProvider>
+  );
+};
+
+export default App;
