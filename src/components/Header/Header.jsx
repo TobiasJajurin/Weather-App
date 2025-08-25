@@ -18,7 +18,7 @@ const Header = () => {
             <span className="back-icon">←</span>
             Back to Landing
           </button>
-          <h1 className="header-title">Weather App</h1>
+          <h1 className="header-title">trocaweather</h1>
         </div>
         <div className="header-controls">
           <button 

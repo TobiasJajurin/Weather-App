@@ -47,7 +47,7 @@ const SearchBar = () => {
         onClick={handleLocationClick}
         disabled={loading}
       >
-        📍 Current Location
+        Current Location
       </button>
     </div>
   );

@@ -1,12 +1,12 @@
 .landing {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background: var(--gradient-secondary);
   position: relative;
   overflow: hidden;
 }
 
 .dark .landing {
-  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+  background: var(--gradient-secondary);
 }
 
 .landing-background {
@@ -159,7 +159,7 @@
 .logo-icon {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, #f59e0b, #f97316);
+  background: linear-gradient(135deg, #111827, #1f2937);
   border-radius: 8px;
   position: relative;
 }
@@ -172,7 +172,7 @@
   transform: translate(-50%, -50%);
   width: 16px;
   height: 16px;
-  background: white;
+  background: #f59e0b;
   border-radius: 50%;
   opacity: 0.9;
 }
@@ -202,8 +202,12 @@
 }
 
 .nav-link:hover {
-  color: white;
+  color: #000000;
   transform: translateY(-1px);
+}
+
+.dark .nav-link:hover {
+  color: white;
 }
 
 .theme-toggle-landing {
@@ -275,13 +279,17 @@
 .hero-title {
   font-size: 3.5rem;
   font-weight: 800;
-  color: white;
+  color: #000000;
   margin-bottom: 1.5rem;
   line-height: 1.2;
   letter-spacing: -0.025em;
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.6s ease 0.4s;
+}
+
+.dark .hero-title {
+  color: white;
 }
 
 .hero-section.animate-in .hero-title {
@@ -429,9 +437,13 @@
 .section-title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: white;
+  color: #000000;
   margin-bottom: 1rem;
   letter-spacing: -0.025em;
+}
+
+.dark .section-title {
+  color: white;
 }
 
 .section-description {
@@ -634,8 +646,12 @@
 .process-step h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: white;
+  color: #000000;
   margin-bottom: 1rem;
+}
+
+.dark .process-step h3 {
+  color: white;
 }
 
 .process-step p {
@@ -646,20 +662,21 @@
 .process-cta {
   display: block;
   margin: 0 auto;
-  background: rgba(148, 163, 184, 0.1);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
   color: white;
+  border: none;
   padding: 1rem 2rem;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
 }
 
 .process-cta:hover {
-  background: rgba(148, 163, 184, 0.2);
   transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
 }
 
 /* Sección Opiniones */
@@ -931,9 +948,13 @@
 .cta-content h2 {
   font-size: 3rem;
   font-weight: 800;
-  color: white;
+  color: #000000;
   margin-bottom: 1rem;
   letter-spacing: -0.025em;
+}
+
+.dark .cta-content h2 {
+  color: white;
 }
 
 .cta-content p {

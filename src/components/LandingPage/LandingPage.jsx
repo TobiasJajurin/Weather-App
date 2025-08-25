@@ -16,6 +16,15 @@ const LandingPage = () => {
   const [planesRef, planesVisible] = useScrollAnimation(0.2);
   const [finalRef, finalVisible] = useScrollAnimation(0.2);
 
+  const scrollTo = (ref) => {
+    const offset = 80;
+    const element = ref?.current;
+    if (element) {
+      const top = element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
   // Carrusel automático
   useEffect(() => {
     const intervalo = setInterval(() => {
@@ -27,24 +36,24 @@ const LandingPage = () => {
   const opiniones = [
     {
       nombre: "María González",
-      cargo: "Desarrolladora Frontend",
-      empresa: "TechCorp",
-      contenido: "Esta app del clima me ayudó a entender la integración de APIs y el manejo de estado. ¡Los datos en tiempo real son súper precisos!",
-      avatar: "👩‍💻"
+      cargo: "Vecina de CABA",
+      empresa: "",
+      contenido: "La app me avisa el cambio de temperatura y la lluvia. Pude planificar mis salidas sin sorpresas.",
+      avatar: "☂️"
     },
     {
       nombre: "Carlos Ruiz",
-      cargo: "Desarrollador Full Stack",
-      empresa: "StartupXYZ",
-      contenido: "Perfecto para practicar React Context y CSS moderno. El diseño es hermoso y el código está muy limpio.",
-      avatar: "👨‍💻"
+      cargo: "Ciclista urbano",
+      empresa: "",
+      contenido: "El pronóstico por días y el viento me sirven mucho para elegir mis rutas a diario.",
+      avatar: "🚴"
     },
     {
       nombre: "Ana Martínez",
-      cargo: "Diseñadora UI/UX",
-      empresa: "DesignStudio",
-      contenido: "Me encanta cómo este proyecto combina funcionalidad con diseño hermoso. ¡Ideal para proyectos de portfolio!",
-      avatar: "🎨"
+      cargo: "Organizadora de eventos",
+      empresa: "",
+      contenido: "La información de humedad, UV y sensación térmica es clarísima. Me ayuda a coordinar eventos al aire libre.",
+      avatar: "🌤️"
     }
   ];
 
@@ -114,13 +123,13 @@ const LandingPage = () => {
         <div className="landing-header-content">
           <div className="landing-logo">
             <div className="logo-icon"></div>
-            <span className="logo-text">AppClima</span>
+            <span className="logo-text">trocaweather</span>
           </div>
           <div className="landing-nav">
-            <button className="nav-link">Tecnologías</button>
-            <button className="nav-link">Características</button>
-            <button className="nav-link">Precios</button>
-            <button className="nav-link">Documentación</button>
+            <button className="nav-link" onClick={() => scrollTo(tecnologiasRef)}>Características</button>
+            <button className="nav-link" onClick={() => scrollTo(procesoRef)}>Cómo usar</button>
+            <button className="nav-link" onClick={() => scrollTo(planesRef)}>Precios</button>
+            <button className="nav-link" onClick={() => scrollTo(finalRef)}>Contacto</button>
             <button className="theme-toggle-landing" onClick={toggleTheme}>
               {isDark ? '☀️' : '🌙'}
             </button>
@@ -135,33 +144,31 @@ const LandingPage = () => {
           className={`hero-section ${heroVisible ? 'animate-in' : ''}`}
         >
           <div className="hero-badge">
-            <span className="badge-icon">Nuevo</span>
             <span className="badge-text">Comienza con datos del clima en tiempo real gratis</span>
           </div>
 
           <h1 className="hero-title">
-            Construye una App del Clima
-            <span className="gradient-text"> con React</span>
+            Pronóstico del tiempo
+            <span className="gradient-text"> en tiempo real</span>
           </h1>
 
           <p className="hero-description">
-            Desarrolla una aplicación completa del clima usando React, Context API y tecnologías web modernas. 
-            Aprende integración de APIs, manejo de estado y diseño responsivo con práctica real.
+            Consulta el estado actual, sensación térmica, viento, humedad e índice UV, además del pronóstico extendido de forma clara y rápida.
           </p>
 
           <button className="cta-button" onClick={startUsingApp}>
             <span className="cta-icon">→</span>
-            Empezar a Construir
+            Ver clima
           </button>
 
           <div className="hero-stats">
             <div className="stat-item">
               <span className="stat-number">50K+</span>
-              <span className="stat-label">Desarrolladores</span>
+              <span className="stat-label">Usuarios</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">1M+</span>
-              <span className="stat-label">Consultas API</span>
+              <span className="stat-label">Ubicaciones</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">99.9%</span>
@@ -182,11 +189,10 @@ const LandingPage = () => {
                 <path d="M3 21h18"/>
               </svg>
             </div>
-            <span className="section-category">Tecnologías</span>
-            <h2 className="section-title">Tecnologías del Proyecto</h2>
+            <span className="section-category">Características</span>
+            <h2 className="section-title">Características principales</h2>
             <p className="section-description">
-              Este proyecto está diseñado para que practiques HTML, CSS, JavaScript y React. 
-              Puedes practicar con frameworks modernos y construir proyectos del mundo real.
+              Toda la información que necesitás para decidir cómo vestirte, cuándo salir y planificar tu día según el clima.
             </p>
           </div>
 
@@ -194,15 +200,14 @@ const LandingPage = () => {
             <div className="roadmap-card">
               <div className="roadmap-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5"/>
-                  <path d="M2 12l10 5 10-5"/>
+                  <path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0"/>
+                  <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.14-6.14-1.41 1.41M7.27 16.73l-1.41 1.41M16.73 16.73l1.41 1.41M7.27 7.27 5.86 5.86"/>
                 </svg>
               </div>
-              <h3>HTML & CSS</h3>
-              <p>Domina los fundamentos del desarrollo web con HTML semántico y técnicas CSS modernas.</p>
+              <h3>Clima actual</h3>
+              <p>Temperatura, sensación térmica, humedad, viento y visibilidad en tiempo real para tu ubicación.</p>
               <div className="difficulty">
-                <span className="difficulty-label">Principiante</span>
+                <span className="difficulty-label">Disponible</span>
                 <div className="difficulty-bars">
                   <div className="bar active"></div>
                   <div className="bar"></div>
@@ -214,17 +219,14 @@ const LandingPage = () => {
             <div className="roadmap-card">
               <div className="roadmap-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14,2 14,8 20,8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10,9 9,9 8,9"/>
+                  <path d="M3 16s3-6 9-6 9 6 9 6"/>
+                  <path d="M7 16a5 5 0 0 0 10 0"/>
                 </svg>
               </div>
-              <h3>JavaScript</h3>
-              <p>Aprende JavaScript moderno incluyendo ES6+, programación asíncrona y manipulación del DOM.</p>
+              <h3>Pronóstico de 5 días</h3>
+              <p>Resumen por día con máximas y mínimas, probabilidad de lluvia y variaciones de temperatura.</p>
               <div className="difficulty">
-                <span className="difficulty-label">Intermedio</span>
+                <span className="difficulty-label">Disponible</span>
                 <div className="difficulty-bars">
                   <div className="bar active"></div>
                   <div className="bar active"></div>
@@ -236,16 +238,14 @@ const LandingPage = () => {
             <div className="roadmap-card">
               <div className="roadmap-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                  <line x1="9" y1="9" x2="9.01" y2="9"/>
-                  <line x1="15" y1="9" x2="15.01" y2="9"/>
+                  <path d="M20 7s-2 3-8 3-8-3-8-3 2-3 8-3 8 3 8 3Z"/>
+                  <path d="M4 14h16M7 18h10"/>
                 </svg>
               </div>
-              <h3>React</h3>
-              <p>Construye interfaces dinámicas con React, hooks y patrones modernos de manejo de estado.</p>
+              <h3>Alertas y detalles</h3>
+              <p>Índice UV, presión, nubosidad y avisos de clima relevante para estar siempre prevenido.</p>
               <div className="difficulty">
-                <span className="difficulty-label">Avanzado</span>
+                <span className="difficulty-label">Disponible</span>
                 <div className="difficulty-bars">
                   <div className="bar active"></div>
                   <div className="bar active"></div>
@@ -268,48 +268,48 @@ const LandingPage = () => {
               </svg>
             </div>
             <span className="section-category">Cómo funciona</span>
-            <h2 className="section-title">Comienza fácilmente en 3 pasos</h2>
+            <h2 className="section-title">Usá trocaweather en 3 pasos</h2>
           </div>
 
           <div className="process-steps">
             <div className="process-step">
-              <div className="step-number">[Paso 1]</div>
+              <div className="step-number">Paso 1</div>
               <div className="step-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8"/>
                   <path d="m21 21-4.35-4.35"/>
                 </svg>
               </div>
-              <h3>Elige un desafío de programación</h3>
-              <p>Elige un desafío, las rutas te ayudarán a navegar. Tendrás acceso al editor de código donde puedes descargar los recursos y obtener los requisitos.</p>
+              <h3>Busca tu ciudad</h3>
+              <p>Ingresá el nombre de tu ciudad para ver el clima actual y el pronóstico de los próximos días.</p>
             </div>
 
             <div className="process-step">
-              <div className="step-number">[Paso 2]</div>
+              <div className="step-number">Paso 2</div>
               <div className="step-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
                   <line x1="12" y1="18" x2="12.01" y2="18"/>
                 </svg>
               </div>
-              <h3>Programa y Envía</h3>
-              <p>Programa el proyecto en tu propio espacio. Para enviar el proyecto, debes proporcionar un enlace del repositorio de GitHub y un enlace de demo. El enlace de demo es donde tu proyecto está desplegado.</p>
+              <h3>Explorá los detalles</h3>
+              <p>Revisá temperatura, viento, humedad, presión, UV y la probabilidad de precipitaciones por día.</p>
             </div>
 
             <div className="process-step">
-              <div className="step-number">[Paso 3]</div>
+              <div className="step-number">Paso 3</div>
               <div className="step-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
               </div>
-              <h3>Revisa y Recibe Feedback</h3>
-              <p>Para mejorar tu código y extender tu conocimiento, revisa el código de otros y dales feedback para mejorar. Estas habilidades son esenciales en el trabajo.</p>
+              <h3>Personalizá tu experiencia</h3>
+              <p>Cambiá entre °C y °F, alterná modo claro/oscuro y mantené tus preferencias para futuras consultas.</p>
             </div>
           </div>
 
           <button className="process-cta" onClick={startUsingApp}>
-            Empezar a programar ahora
+            Ver clima
           </button>
         </div>
 
@@ -319,7 +319,7 @@ const LandingPage = () => {
           className={`testimonials-section ${opinionesVisible ? 'animate-in' : ''}`}
         >
           <div className="section-header">
-            <h2 className="section-title">Lo que dicen los desarrolladores</h2>
+            <h2 className="section-title">Lo que dicen los usuarios</h2>
             <p className="section-description">
               Únete a miles de desarrolladores que han mejorado sus habilidades con nuestros proyectos
             </p>
@@ -365,7 +365,7 @@ const LandingPage = () => {
           <div className="section-header">
             <h2 className="section-title">Elige tu plan</h2>
             <p className="section-description">
-              Comienza gratis y mejora mientras creces
+              Elegí el plan que mejor se adapta a lo que necesitás ver del clima
             </p>
           </div>
 
@@ -393,7 +393,12 @@ const LandingPage = () => {
                     </li>
                   ))}
                 </ul>
-                <button className="plan-button">
+                <button 
+                  className="plan-button"
+                  onClick={plan.nombre === 'Gratis' ? startUsingApp : 
+                    plan.nombre === 'Pro' ? () => window.open('https://www.linkedin.com/in/ianmiglin', '_blank') :
+                    () => window.open('https://www.linkedin.com/in/tobiasjajurin/', '_blank')}
+                >
                   Comenzar
                 </button>
               </div>
@@ -407,10 +412,10 @@ const LandingPage = () => {
           className={`final-cta-section ${finalVisible ? 'animate-in' : ''}`}
         >
           <div className="cta-content">
-            <h2>¿Listo para empezar a construir?</h2>
-            <p>Únete a miles de desarrolladores construyendo increíbles aplicaciones del clima</p>
+            <h2>¿Listo para ver el clima?</h2>
+            <p>Únete a miles de usuarios consultando el clima en tiempo real</p>
             <button className="final-cta-button" onClick={startUsingApp}>
-              Empezar a Construir Ahora
+              Ver clima
             </button>
           </div>
         </div>
