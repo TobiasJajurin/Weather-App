@@ -28,18 +28,20 @@ const WeatherApp = () => {
       <main className="main-content">
         <SearchBar />
         <RecentSearches />
-        
         {error && <ErrorMessage message={error} />}
-        
         {loading && <LoadingSpinner />}
-        
+
         {!loading && !error && currentWeather && (
-          <>
-            <WeatherCard weather={currentWeather} />
-            {forecast && <ForecastList forecast={forecast} />}
-          </>
+          <div className="dashboard-grid">
+            <div className="dashboard-left">
+              <WeatherCard weather={currentWeather} />
+            </div>
+            <div className="dashboard-right">
+              {forecast && <ForecastList forecast={forecast} />}
+            </div>
+          </div>
         )}
-        
+
         {!loading && !error && !currentWeather && (
           <div className="welcome-message">
             <h2>App del Clima</h2>

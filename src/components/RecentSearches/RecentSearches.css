@@ -1,16 +1,16 @@
 .recent-searches {
-  margin: 2rem 0;
-  padding: 1rem;
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  max-width: 900px;
 }
 
 .recent-searches-title {
-  margin: 0 0 1rem 0;
-  font-size: 1.2rem;
-  color: var(--text-primary);
-  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
 }
 
 .recent-searches-list {
@@ -20,29 +20,33 @@
 }
 
 .recent-search-item {
-  padding: 0.5rem 1rem;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 20px;
+  padding: 0.5rem 0.9rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .recent-search-item:hover {
-  background-color: var(--button-hover);
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
 }
 
-.recent-search-item:active {
-  transform: translateY(1px);
-}
+.recent-search-item:active { transform: translateY(0); }
+
+.chip-icon { opacity: .8; }
+.chip-text { font-weight: 600; }
 
 @media (max-width: 768px) {
-  .recent-searches {
-    margin: 1rem 0;
-    padding: 0.8rem;
-  }
+  .recent-searches { margin: 1rem auto; padding: 0 1rem; }
   
   .recent-searches-list {
     gap: 0.4rem;

@@ -12,15 +12,17 @@ const RecentSearches = () => {
 
   return (
     <div className="recent-searches">
-      <h3 className="recent-searches-title">Últimas búsquedas</h3>
+      <h3 className="recent-searches-title">Búsquedas recientes</h3>
       <div className="recent-searches-list">
         {recentSearches.map((city, index) => (
           <button
             key={index}
             className="recent-search-item"
             onClick={() => fetchWeather(city)}
+            aria-label={`Buscar ${city}`}
           >
-            {city}
+            <span className="chip-icon">🕘</span>
+            <span className="chip-text">{city}</span>
           </button>
         ))}
       </div>

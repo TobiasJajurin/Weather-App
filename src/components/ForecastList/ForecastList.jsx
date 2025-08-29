@@ -12,6 +12,19 @@ const ForecastList = ({ forecast }) => {
     return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
   };
 
+  const getWeatherEmoji = (weather) => {
+    const main = (weather?.main || '').toLowerCase();
+    const id = weather?.id || 0;
+    if (main.includes('thunder') || (id >= 200 && id < 300)) return '⛈️';
+    if (main.includes('drizzle') || (id >= 300 && id < 400)) return '🌧️';
+    if (main.includes('rain') || (id >= 500 && id < 600)) return '🌦️';
+    if (main.includes('snow') || (id >= 600 && id < 700)) return '❄️';
+    if (main.includes('mist') || main.includes('fog') || (id >= 700 && id < 800)) return '🌫️';
+    if (id === 800 || main.includes('clear')) return '☀️';
+    if (id > 800 || main.includes('cloud')) return '☁️';
+    return '🌡️';
+  };
+
   const formatDay = (timestamp) => {
     const date = new Date(timestamp * 1000);
     return date.toLocaleDateString('en-US', { weekday: 'short' });
@@ -40,6 +53,8 @@ const ForecastList = ({ forecast }) => {
       const avgTemp = dayForecasts.reduce((sum, item) => sum + item.main.temp, 0) / dayForecasts.length;
       const avgFeelsLike = dayForecasts.reduce((sum, item) => sum + item.main.feels_like, 0) / dayForecasts.length;
       const avgHumidity = dayForecasts.reduce((sum, item) => sum + item.main.humidity, 0) / dayForecasts.length;
+      const minTemp = dayForecasts.reduce((min, item) => Math.min(min, item.main.temp_min ?? item.main.temp), Infinity);
+      const maxTemp = dayForecasts.reduce((max, item) => Math.max(max, item.main.temp_max ?? item.main.temp), -Infinity);
       
       const mostFrequentWeather = dayForecasts.reduce((acc, item) => {
         const weatherId = item.weather[0].id;
@@ -58,7 +73,9 @@ const ForecastList = ({ forecast }) => {
         temp: avgTemp,
         feels_like: avgFeelsLike,
         humidity: Math.round(avgHumidity),
-        weather: dominantWeather
+        weather: dominantWeather,
+        min: minTemp,
+        max: maxTemp
       };
     });
   };
@@ -77,11 +94,9 @@ const ForecastList = ({ forecast }) => {
             </div>
             
             <div className="forecast-weather">
-              <img 
-                src={getWeatherIcon(day.weather.icon)} 
-                alt={day.weather.description}
-                className="forecast-icon"
-              />
+              <span className="forecast-emoji" aria-hidden>
+                {getWeatherEmoji(day.weather)}
+              </span>
               <span className="forecast-description">
                 {day.weather.description}
               </span>
@@ -91,6 +106,19 @@ const ForecastList = ({ forecast }) => {
               <span className="forecast-temp-value">
                 {convertTemp(Math.round(day.temp))}{getUnitSymbol()}
               </span>
+              <div className="temp-range">
+                <span className="min">{convertTemp(Math.round(day.min))}{getUnitSymbol()}</span>
+                <div className="range-bar">
+                  <div
+                    className="range-fill"
+                    style={{
+                      ['--min'] : `${day.min}`,
+                      ['--max'] : `${day.max}`
+                    }}
+                  />
+                </div>
+                <span className="max">{convertTemp(Math.round(day.max))}{getUnitSymbol()}</span>
+              </div>
             </div>
             
             <div className="forecast-details">

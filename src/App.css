@@ -10,6 +10,19 @@
   padding: 1rem 0;
 }
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.dashboard-left { position: sticky; top: 12px; align-self: start; }
+.dashboard-right { overflow: hidden; }
+
 .welcome-message {
   text-align: center;
   max-width: 700px;
@@ -43,6 +56,8 @@
   .main-content {
     padding: 0.5rem 0;
   }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .dashboard-left { position: static; }
   
   .welcome-message {
     margin: 2rem auto;

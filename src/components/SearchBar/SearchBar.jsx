@@ -25,30 +25,36 @@ const SearchBar = () => {
     <div className="search-container">
       <form className="search-form" onSubmit={handleSubmit}>
         <div className="search-input-group">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search for a city..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            disabled={loading}
-          />
+          <div className="search-input-wrapper">
+            <span className="search-icon" aria-hidden>🔍</span>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Buscar ciudad..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              disabled={loading}
+            />
+          </div>
           <button 
             type="submit" 
             className="search-button"
             disabled={loading || !query.trim()}
+            aria-label="Buscar"
           >
-            {loading ? '🔍' : 'Search'}
+            Buscar
+          </button>
+          <button 
+            type="button"
+            className="location-button"
+            onClick={handleLocationClick}
+            disabled={loading}
+            aria-label="Usar ubicación actual"
+          >
+            📍 Ubicación
           </button>
         </div>
       </form>
-      <button 
-        className="location-button"
-        onClick={handleLocationClick}
-        disabled={loading}
-      >
-        Current Location
-      </button>
     </div>
   );
 };
