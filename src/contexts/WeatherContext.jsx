@@ -15,12 +15,23 @@ export const WeatherProvider = ({ children }) => {
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [lastSearch, setLastSearch] = useState(() => {
-    const saved = localStorage.getItem('lastSearch');
-    return saved ? JSON.parse(saved) : null;
+  const [recentSearches, setRecentSearches] = useState(() => {
+    const saved = localStorage.getItem('recentSearches');
+    return saved ? JSON.parse(saved) : [];
   });
 
   const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+
+  const addToRecentSearches = (city) => {
+    // Remove duplicates and keep only unique cities
+    const updatedSearches = [
+      city,
+      ...recentSearches.filter(search => search !== city)
+    ].slice(0, 5); // Keep only last 5 searches
+    
+    setRecentSearches(updatedSearches);
+    localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
+  };
 
   const fetchWeather = async (city) => {
     if (!API_KEY) {
@@ -50,8 +61,7 @@ export const WeatherProvider = ({ children }) => {
 
       setCurrentWeather(currentData);
       setForecast(forecastData);
-      setLastSearch(city);
-      localStorage.setItem('lastSearch', JSON.stringify(city));
+      addToRecentSearches(city);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -83,8 +93,7 @@ export const WeatherProvider = ({ children }) => {
 
       setCurrentWeather(currentData);
       setForecast(forecastData);
-      setLastSearch(currentData.name);
-      localStorage.setItem('lastSearch', JSON.stringify(currentData.name));
+      addToRecentSearches(currentData.name);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -99,7 +108,7 @@ export const WeatherProvider = ({ children }) => {
           fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
         },
         (error) => {
-          setError('Unable to get your location');
+          setError(`Unable to get your location: ${error.message}`);
         }
       );
     } else {
@@ -108,8 +117,8 @@ export const WeatherProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (lastSearch) {
-      fetchWeather(lastSearch);
+    if (recentSearches.length > 0) {
+      fetchWeather(recentSearches[0]); // Fetch the most recent search on app load
     }
   }, []);
 
@@ -119,7 +128,7 @@ export const WeatherProvider = ({ children }) => {
       forecast,
       loading,
       error,
-      lastSearch,
+      recentSearches,
       fetchWeather,
       fetchWeatherByCoords,
       getCurrentLocation

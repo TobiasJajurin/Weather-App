@@ -1,0 +1,55 @@
+.recent-searches {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recent-searches-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.recent-searches-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.recent-search-item {
+  padding: 0.5rem 1rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.recent-search-item:hover {
+  background-color: var(--button-hover);
+}
+
+.recent-search-item:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .recent-searches {
+    margin: 1rem 0;
+    padding: 0.8rem;
+  }
+  
+  .recent-searches-list {
+    gap: 0.4rem;
+  }
+  
+  .recent-search-item {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

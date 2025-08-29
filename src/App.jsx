@@ -4,6 +4,7 @@ import { WeatherProvider } from './contexts/WeatherContext';
 import { LandingProvider } from './contexts/LandingContext';
 import Header from './components/Header/Header';
 import SearchBar from './components/SearchBar/SearchBar';
+import RecentSearches from './components/RecentSearches/RecentSearches';
 import WeatherCard from './components/WeatherCard/WeatherCard';
 import ForecastList from './components/ForecastList/ForecastList';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
@@ -26,6 +27,7 @@ const WeatherApp = () => {
       <Header />
       <main className="main-content">
         <SearchBar />
+        <RecentSearches />
         
         {error && <ErrorMessage message={error} />}
         
