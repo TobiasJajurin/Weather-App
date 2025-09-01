@@ -25,7 +25,6 @@ const LandingPage = () => {
     }
   };
 
-  // Carrusel automático
   useEffect(() => {
     const intervalo = setInterval(() => {
       setSlideActual((prev) => (prev + 1) % 3);
@@ -39,21 +38,21 @@ const LandingPage = () => {
       cargo: "Vecina de CABA",
       empresa: "",
       contenido: "La app me avisa el cambio de temperatura y la lluvia. Pude planificar mis salidas sin sorpresas.",
-      avatar: "☂️"
+      avatar: "rain"
     },
     {
       nombre: "Carlos Ruiz",
       cargo: "Ciclista urbano",
       empresa: "",
       contenido: "El pronóstico por días y el viento me sirven mucho para elegir mis rutas a diario.",
-      avatar: "🚴"
+      avatar: "bike"
     },
     {
       nombre: "Ana Martínez",
       cargo: "Organizadora de eventos",
       empresa: "",
       contenido: "La información de humedad, UV y sensación térmica es clarísima. Me ayuda a coordinar eventos al aire libre.",
-      avatar: "🌤️"
+      avatar: "sun"
     }
   ];
 
@@ -131,7 +130,16 @@ const LandingPage = () => {
             <button className="nav-link" onClick={() => scrollTo(planesRef)}>Precios</button>
             <button className="nav-link" onClick={() => scrollTo(finalRef)}>Contacto</button>
             <button className="theme-toggle-landing" onClick={toggleTheme}>
-              {isDark ? '☀️' : '🌙'}
+              {isDark ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
+                  <circle cx="12" cy="12" r="5"/>
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -157,7 +165,11 @@ const LandingPage = () => {
           </p>
 
           <button className="cta-button" onClick={startUsingApp}>
-            <span className="cta-icon">→</span>
+            <span className="cta-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
             Ver clima
           </button>
 
@@ -336,7 +348,27 @@ const LandingPage = () => {
                     <p>"{opinion.contenido}"</p>
                   </div>
                   <div className="testimonial-author">
-                    <div className="author-avatar">{opinion.avatar}</div>
+                    <div className="author-avatar">
+                      {opinion.avatar === 'rain' && (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+                          <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+                          <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                      )}
+                      {opinion.avatar === 'bike' && (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+                          <path d="M18 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/>
+                          <path d="M6 10h.01M18 10h.01"/>
+                          <path d="M6 14h.01M18 14h.01"/>
+                        </svg>
+                      )}
+                      {opinion.avatar === 'sun' && (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+                          <circle cx="12" cy="12" r="4"/>
+                          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.41-1.41M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                      )}
+                    </div>
                     <div className="author-info">
                       <h4>{opinion.nombre}</h4>
                       <p>{opinion.cargo} en {opinion.empresa}</p>
@@ -357,7 +389,6 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Sección Precios */}
         <div 
           ref={planesRef}
           className={`pricing-section ${planesVisible ? 'animate-in' : ''}`}
@@ -406,7 +437,6 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Sección Final */}
         <div 
           ref={finalRef}
           className={`final-cta-section ${finalVisible ? 'animate-in' : ''}`}

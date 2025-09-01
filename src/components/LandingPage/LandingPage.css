@@ -1,12 +1,12 @@
 .landing {
   min-height: 100vh;
-  background: var(--gradient-secondary);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   position: relative;
   overflow: hidden;
 }
 
 .dark .landing {
-  background: var(--gradient-secondary);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
 .landing-background {
@@ -19,9 +19,7 @@
 }
 
 .floating-shapes {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  display: none;
 }
 
 .shape {
@@ -86,10 +84,7 @@
 }
 
 .connection-lines {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  display: none;
 }
 
 .line {
@@ -236,7 +231,6 @@
   padding-top: 80px;
 }
 
-/* Sección Hero */
 .hero-section {
   text-align: center;
   padding: 6rem 0 4rem;
@@ -392,7 +386,6 @@
   font-weight: 500;
 }
 
-/* Section Headers */
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -454,7 +447,6 @@
   line-height: 1.6;
 }
 
-/* Sección Tecnologías */
 .roadmap-section {
   padding: 6rem 0;
   opacity: 0;
@@ -572,7 +564,6 @@
   background: #f59e0b;
 }
 
-/* Sección Proceso */
 .process-section {
   padding: 6rem 0;
   opacity: 0;
@@ -679,7 +670,6 @@
   box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
 }
 
-/* Sección Opiniones */
 .testimonials-section {
   padding: 6rem 0;
   opacity: 0;
@@ -779,7 +769,6 @@
   transform: scale(1.2);
 }
 
-/* Sección Precios */
 .pricing-section {
   padding: 6rem 0;
   opacity: 0;
@@ -931,7 +920,6 @@
   box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
 }
 
-/* Sección Final */
 .final-cta-section {
   padding: 6rem 0;
   text-align: center;

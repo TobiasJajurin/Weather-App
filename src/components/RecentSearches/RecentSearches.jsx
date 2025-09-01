@@ -21,7 +21,7 @@ const RecentSearches = () => {
             onClick={() => fetchWeather(city)}
             aria-label={`Buscar ${city}`}
           >
-            <span className="chip-icon">🕘</span>
+            <span className="chip-icon"></span>
             <span className="chip-text">{city}</span>
           </button>
         ))}

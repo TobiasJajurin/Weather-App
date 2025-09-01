@@ -26,7 +26,7 @@ const SearchBar = () => {
       <form className="search-form" onSubmit={handleSubmit}>
         <div className="search-input-group">
           <div className="search-input-wrapper">
-            <span className="search-icon" aria-hidden>🔍</span>
+            <span className="search-icon" aria-hidden></span>
             <input
               type="text"
               className="search-input"
@@ -51,7 +51,7 @@ const SearchBar = () => {
             disabled={loading}
             aria-label="Usar ubicación actual"
           >
-            📍 Ubicación
+             Ubicación
           </button>
         </div>
       </form>

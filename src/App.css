@@ -7,17 +7,17 @@
 
 .main-content {
   flex: 1;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 360px 1fr;
+  gap: 0.75rem;
   align-items: start;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.25rem;
 }
 
 .dashboard-left { position: sticky; top: 12px; align-self: start; }

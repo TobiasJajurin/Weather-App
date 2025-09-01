@@ -23,11 +23,10 @@ export const WeatherProvider = ({ children }) => {
   const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   const addToRecentSearches = (city) => {
-    // Remove duplicates and keep only unique cities
     const updatedSearches = [
       city,
       ...recentSearches.filter(search => search !== city)
-    ].slice(0, 5); // Keep only last 5 searches
+    ].slice(0, 5);
     
     setRecentSearches(updatedSearches);
     localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
@@ -118,7 +117,7 @@ export const WeatherProvider = ({ children }) => {
 
   useEffect(() => {
     if (recentSearches.length > 0) {
-      fetchWeather(recentSearches[0]); // Fetch the most recent search on app load
+      fetchWeather(recentSearches[0]);
     }
   }, []);
 
